@@ -1,0 +1,61 @@
+// Custom options for protoc-gen-jsonschema
+// Allocated range is 1125-1129
+// See https://github.com/protocolbuffers/protobuf/blob/master/docs/options.md
+
+syntax = "proto3";
+package protoc.gen.jsonschema;
+import "google/protobuf/descriptor.proto";
+option go_package = "github.com/TheRebelOfBabylon/protoc-gen-jsonschema";
+
+
+// Custom FieldOptions
+message FieldOptions {
+
+  // Fields tagged with this will be omitted from generated schemas
+  bool ignore = 1;
+
+  // Fields tagged with this will be marked as "required" in generated schemas
+  bool required = 2;
+
+  // Fields tagged with this will constrain strings using the "minLength" keyword in generated schemas
+  int32 min_length = 3;
+
+  // Fields tagged with this will constrain strings using the "maxLength" keyword in generated schemas
+  int32 max_length = 4;
+
+  // Fields tagged with this will constrain strings using the "pattern" keyword in generated schemas
+  string pattern = 5;
+
+  // Fields tagged with this will set the ref field to the given value
+  string ref = 6;
+
+  // Fields tagged with this will constrain arrays using the "minItems" keyword in generated schemas
+  int32 min_items = 7;
+
+  // Fields tagged with this will constrain strings using the "format" keyword in generated schemas
+  string format = 8;
+}
+
+
+// Custom MessageOptions
+message MessageOptions {
+
+  // Messages tagged with this will not be processed
+  bool ignore = 1;
+
+  // Messages tagged with this will have all fields marked as "required":
+  bool all_fields_required = 2;
+
+  // Messages tagged with this will populate the id field with provided value. Default value is filename with json extension
+  string id = 3;
+}
+
+
+extend google.protobuf.FieldOptions {
+  FieldOptions field_options = 1125;
+}
+
+extend google.protobuf.MessageOptions {
+  MessageOptions message_options = 1127;
+}
+

@@ -19,3 +19,11 @@
 
 # Go workspace file
 go.work
+
+# asdf stuff
+.tool-versions
+
+# protobuf stuff
+googleapis/
+jsonschema/
+test/
